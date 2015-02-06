@@ -1,8 +1,8 @@
 [template]
 src = "nginx.tmpl"
-dest = "/etc/nginx/conf.d/default.conf"
+dest = "/tmp/default-check.conf"
 keys = ["/services/web"]
 owner = "root"
 mode = "0644"
-check_cmd = "/usr/sbin/nginx -t"
-reload_cmd = "/usr/sbin/service nginx reload"
+check_cmd = "/usr/sbin/nginx -t -c /tmp/nginx-check.conf"
+reload_cmd = "/bin/cp /tmp/default-check.conf /etc/nginx/conf.d/default.conf && /usr/sbin/service nginx reload"

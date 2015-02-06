@@ -10,6 +10,8 @@ RUN apt-get update \
 COPY confd.toml /etc/confd/confd.toml
 COPY nginx.toml /etc/confd/conf.d/nginx.toml
 COPY nginx.tmpl /etc/confd/templates/nginx.tmpl
+COPY nginx-check.conf /tmp/nginx-check.conf
+RUN touch /tmp/default-check.conf
 
 ENV CONFD_VERSION 0.7.1
 
