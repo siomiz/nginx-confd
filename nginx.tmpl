@@ -1,9 +1,10 @@
 {{ range gets "/services/web/*" }}
 {{ $data := json .Value }}
+{{ if $data._ }} 
 upstream {{ base .Key }} {
 	server {{ $data._ }};
 }
-{{ end }}
+{{ end }}{{ end }}
 
 server {
 
@@ -27,7 +28,13 @@ server {
 
 	{{ range gets "/services/web/*" }}
 	location /{{ base .Key }}/ {
+		{{ $data := json .Value }}
+		{{ if $data._ }}
 		proxy_pass http://{{ base .Key }}/;
+		{{ end }}
+		{{ if $data.instr }}
+		{{ $data.instr }}
+		{{ end }}
 	}
 	{{ end }}
 
