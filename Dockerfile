@@ -13,7 +13,7 @@ COPY nginx.tmpl /etc/confd/templates/nginx.tmpl
 COPY nginx-check.conf /tmp/nginx-check.conf
 RUN touch /tmp/default-check.conf
 
-ENV CONFD_VERSION 0.7.1
+ENV CONFD_VERSION 0.8.0
 
 ADD https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 /opt/confd/confd
 
