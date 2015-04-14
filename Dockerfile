@@ -2,25 +2,19 @@ FROM nginx:latest
 
 MAINTAINER Tomohisa Kusano <siomiz@gmail.com>
 
-RUN apt-get update \
-	&& DEBIAN_FRONTEND=noninteractive \
-	apt-get install -y \
-	openssl
+# RUN apt-get update \
+#	&& DEBIAN_FRONTEND=noninteractive \
+#	apt-get install -y \
+#	openssl \
+#	&& rm -rf /var/lib/apt/lists/*
 
-COPY confd.toml /etc/confd/confd.toml
-COPY nginx.toml /etc/confd/conf.d/nginx.toml
-COPY nginx.tmpl /etc/confd/templates/nginx.tmpl
-COPY nginx-check.conf /tmp/nginx-check.conf
-RUN touch /tmp/default-check.conf
+COPY copyables /
 
-ENV CONFD_VERSION 0.8.0
+ENV CONFD_VERSION 0.9.0
 
 ADD https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 /opt/confd/confd
 
-RUN chmod +x /opt/confd/confd
-
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /opt/confd/confd /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
