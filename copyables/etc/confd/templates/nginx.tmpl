@@ -22,7 +22,7 @@ server {
 
 	ssl_ciphers 'AES256+EECDH:AES256+EDH:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!RC4:!PSK';
 
-	ssl_dhparam dh1024.pem;
+	ssl_dhparam dh2048.pem;
 
 	add_header Strict-Transport-Security "max-age=31536000; includeSubdomains;";
 
