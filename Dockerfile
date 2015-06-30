@@ -10,7 +10,7 @@ MAINTAINER Tomohisa Kusano <siomiz@gmail.com>
 
 COPY copyables /
 
-ENV CONFD_VERSION 0.9.0
+ENV CONFD_VERSION v0.10.0
 
 ADD https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 /opt/confd/confd
 
